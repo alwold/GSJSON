@@ -236,14 +236,22 @@
 		"U":"<xsl:value-of select='U' />",
 		"UE":"<xsl:value-of select='UE' />",
 		"ED":"<xsl:value-of select='ED' />",
-		"T":"<xsl:value-of select='T' />",
+		"T":"<xsl:call-template name="replace_string">
+			<xsl:with-param name="find"    select="'\'"/>
+			<xsl:with-param name="replace" select="'\\'"/>
+			<xsl:with-param name="string"  select="T"/>
+		</xsl:call-template>",
 		"CRAWLDATE":"<xsl:value-of select='CRAWLDATE'/>",
 		"RK":"<xsl:value-of select='RK' />",
 		"FS": {	<xsl:for-each select="FS/@*">
 					"<xsl:value-of select='name()' />":"<xsl:value-of select='.' />"
 					<xsl:if test="position() != last()">,</xsl:if>
 				</xsl:for-each>},
-		"S": "<xsl:value-of select='S' />",
+		"S": "<xsl:call-template name="replace_string">
+			<xsl:with-param name="find"    select="'\'"/>
+			<xsl:with-param name="replace" select="'\\'"/>
+			<xsl:with-param name="string"  select="S"/>
+		</xsl:call-template>",
 		"LANG": "<xsl:value-of select='LANG'/>"
 		<xsl:choose>
 			<xsl:when test='HAS'>
